@@ -28,5 +28,9 @@ app.get('/api/hello', (req, res) => {
     });
 });
 
+app.get('/req', (req, res) => {
+    console.log(req.query.name)
+    res.send('sdkjf')
+})
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

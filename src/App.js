@@ -5,7 +5,7 @@ import HomePage from './components/homepage'
 let App = () => {
   return (
     <div>
-      <HomePage></HomePage>
+      <HomePage />
     </div>
   )
 
