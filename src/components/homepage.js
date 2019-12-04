@@ -20,7 +20,7 @@ class HomePage extends React.Component {
     }
 
     getResponse = async () => {
-        const response = await fetch('/api/hello');
+        const response = await fetch('/Home');
         const body = await response.json();
         return body;
     }
@@ -45,6 +45,7 @@ class HomePage extends React.Component {
             <li key={index}>
                 <div>
                     {flower.COMNAME}
+
                 </div>
                 <div>
                     <Link to='/flowerInfo'>Info</Link>
@@ -53,13 +54,17 @@ class HomePage extends React.Component {
         )
 
         return (
-            // <div>
-            //     {flowers}
-            // </div>
             <Router>
                 <div>
-                    <Switch>
+                    <nav>
+                        <ul>
+                            <li>
+                                <Link to="/">Home</Link>
+                            </li>
+                        </ul>
+                    </nav>
 
+                    <Switch>
                         <Route path="/flowerInfo">
                             <FlowerInfo value='asd' />
                         </Route>
@@ -69,6 +74,7 @@ class HomePage extends React.Component {
                             </div>
                         </Route>
                     </Switch>
+
                 </div>
             </Router>
         )
