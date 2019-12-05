@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'react-bootstrap/Image'
 import axios from "axios";
 import Insert from './insert'
 import {
@@ -9,7 +10,7 @@ import {
 
 import Update from './update'
 
-
+const balabala = 'https://ded2589.inmotionhosting.com/~calsca6/ExtData/allimages/900/Mimulus_primuloides_900_4.jpg';
 
 
 class HomePage extends React.Component {
@@ -81,8 +82,13 @@ class HomePage extends React.Component {
                         </div>
 
                         <div className="column2">
+                        
+                        <Image src={balabala} thumbnail/>
                             <table className="table table-striped table-hover">
                                 <tbody>
+                                    <tr>
+                                       
+                                    </tr>
                                     <tr>
                                         <td>
                                             <b>Recent Sightings</b>

@@ -51,7 +51,7 @@ class Insert extends React.Component {
                     </label>
                     <label>
                         Sighted:
-                        <input type="text" name='sighted' value={this.state.sighted} onChange={this.handleChange} />
+                        <input type="date" name='sighted' value={this.state.sighted} onChange={this.handleChange} />
                     </label>
                     <input type="submit" value="Submit" />
                 </form>
