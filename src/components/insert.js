@@ -11,9 +11,10 @@ class Insert extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            genus: ' ',
-            species: ' ',
-            comname: ' '
+            name: ' ',
+            person: ' ',
+            location: ' ',
+            sighted: ' '
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -33,10 +34,6 @@ class Insert extends React.Component {
     }
 
     handleSubmit(event) {
-        alert('The flower information has been inserted.' +
-            ' Genus: ' + this.state.genus +
-            ' Species: ' + this.state.species +
-            ' Common Name: ' + this.state.comname);
         event.preventDefault();
     }
 
@@ -45,16 +42,16 @@ class Insert extends React.Component {
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <label>
-                        Genus:
-                        <input type="text" name='genus' value={this.state.genus} onChange={this.handleChange} />
+                        Person:
+                        <input type="text" name='person' value={this.state.person} onChange={this.handleChange} />
                     </label>
                     <label>
-                        Species:
-                        <input type="text" name='species' value={this.state.species} onChange={this.handleChange} />
+                        Location:
+                        <input type="text" name='location' value={this.state.location} onChange={this.handleChange} />
                     </label>
                     <label>
-                        Common Name:
-                        <input type="text" name='comname' value={this.state.comname} onChange={this.handleChange} />
+                        Sighted:
+                        <input type="text" name='sighted' value={this.state.sighted} onChange={this.handleChange} />
                     </label>
                     <input type="submit" value="Submit" />
                 </form>
