@@ -74,15 +74,6 @@ class HomePage extends React.Component {
                                                 <b>Flowers</b>
                                             </td>
                                         </tr>
-
-                                        <tr>
-                                            <button type="button"><Link to='/Insert'>Insert</Link></button>
-
-                                            <Route path='/Insert'>
-                                                <Insert />
-                                            </Route>
-                                        </tr>
-
                                         {flowers}
                                     </tbody>
                                 </table>
@@ -104,11 +95,20 @@ class HomePage extends React.Component {
                                             <br />
                                             <button type="button"><Link to='/HomePage/Update'>Update</Link></button>
                                         </td>
+                                        <br/>
+                                        <br/>
+                                        <td>
+                                            <button type="button"><Link to='/HomePage/Insert'>Insert</Link></button>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
                             <Route path='/HomePage/Update'>
                                 <Update choseFlower={this.state.choseFlower} />
+                            </Route>
+
+                            <Route path='/HomePage/Insert'>
+                                <Insert />
                             </Route>
 
                         </div>
