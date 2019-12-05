@@ -15,6 +15,7 @@ class HomePage extends React.Component {
         super(props);
         this.state = {
             flowers: [],
+            sightings: [],
             chosen: ''
         }
     }
@@ -42,11 +43,19 @@ class HomePage extends React.Component {
 
     render() {
         let flowers = this.state.flowers.map((flower, index) =>
-            <li key={index}>
-                <div>
+            <tr key={index}>
+                <td>
                     {flower.COMNAME}
-                </div>
-            </li>
+                </td>
+            </tr>
+        )
+
+        let person = this.state.sightings.map((sighting, index) =>
+            <tr key={index}>
+                <td>
+                    {sighting.PERSON}
+                </td>
+            </tr>
         )
 
         return (
@@ -66,24 +75,48 @@ class HomePage extends React.Component {
                             </div>
                         </Route>
                     </Switch> */}
-                     <div className="row">
-            <div className="column1">
-              <div className="tableWrapper">
-                <table className="table table-striped table-hover">
-                  <tr>
-                    <td>
-                      <b>Flowers</b>
-                    </td>
-                  </tr>
-                    {flowers}
-                </table>
-              </div>
-            </div>
-            <div className="column2">
-              
-            </div>
+
+
+            <div className="row">
+                <div className="column1">
+                    <div className="tableWrapper">
+                        <table className="table table-striped table-hover">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <b>Flowers</b>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            {flowers}
+                        </table>
+                    </div>
                 </div>
+
+                <div className="column2">
+                    <div className="tableWrapper">
+                        <table className="table table-striped table-hover">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <b>Flowers</b>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            {person}
+                        </table>
+                    </div>
+                        {/* <p>
+                            <b>BLAH: </b>
+                            <br/>
+                            <b>BLAH2: </b>
+                            <br/>
+                            <b>BLAH3: </b>
+                        </p> */}
+                    
                 </div>
+            </div>
+        </div>
     
         )
     }
