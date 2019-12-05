@@ -30,18 +30,33 @@ app.get('/Home', (req, res) => {
 app.get('/req', async (req, res) => {
     let comName = req.query.name;
 
-    let sql = `SELECT person,location,sighted
+    let sql = `SELECT *
                 FROM SIGHTINGS
                 WHERE name = "${comName}"
                 ORDER BY sighted DESC`
     db.all(sql, [], (err, rows) => {
-        console.log(comName)
+        //console.log(comName)
         if (err) {
             throw err;
         }
         res.send(rows)
     })
 
+})
+
+app.post('/send', (req, res) => {
+    let genus = req.body.update.genus;
+    let species = req.body.update.species;
+    let comName = req.body.update.comname;
+    let choseFlower = req.body.choseFlower;
+
+    let sql = `UPDATE FLOWERS set GENUS = "${genus}",SPECIES = "${species}",COMNAME = "${comName}" where COMName = "${choseFlower}"`
+    db.run(sql, (err) => {
+        if (err) {
+            res.end("fali to updata");
+        }
+    });
+    res.end("success to Update")
 })
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
