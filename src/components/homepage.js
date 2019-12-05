@@ -1,8 +1,13 @@
-  
 import React from 'react';
 import axios from "axios";
 import FlowerInfo from './flowerInfo'
-
+import Update from './update'
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
 
 
 
@@ -11,7 +16,7 @@ class HomePage extends React.Component {
         super(props);
         this.state = {
             flowers: [],
-            chosen: ''
+            sightings: []
         }
     }
 
@@ -36,17 +41,20 @@ class HomePage extends React.Component {
         if (res.length > 10) {
             res = res.slice(0, 10)
         }
-        console.log(res.length)
         this.setState({
             flowers: this.state.flowers,
             sightings: res
         })
+        console.log(this.state.flowers)
     }
-
 
     render() {
         let flowers = this.state.flowers.map((flower, index) =>
             <tr key={index}><td onClick={() => this.click(flower.COMNAME)}>{flower.COMNAME}</td></tr>
+        )
+        //PERSON, LOCATION, SIGHTED
+        let recentSightings = this.state.sightings.map((sighting, index) =>
+            <tr key={index}><td >{sighting.PERSON} {sighting.LOCATION} {sighting.SIGHTED}</td></tr>
         )
 
         return (
@@ -84,9 +92,27 @@ class HomePage extends React.Component {
                         </div>
 
                         <div className="column2">
-                            <p>
-                                blah
-                            </p>
+                            <table className="table table-striped table-hover">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <b>Recent Sightings</b>
+                                        </td>
+                                    </tr>
+                                    {recentSightings}
+                                    <br/>
+                                    <br/>
+                                    <button type="button"><Link to='/Update'>Update</Link></button>
+                                    
+                                    <Route path='/Update'>
+                                        <Update />
+                                    </Route>
+
+                                    
+                                    
+
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </main>
