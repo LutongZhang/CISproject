@@ -1,12 +1,7 @@
 import React from 'react';
 import axios from "axios";
 import FlowerInfo from './flowerInfo'
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
+
 
 
 
@@ -31,40 +26,31 @@ class HomePage extends React.Component {
         })
     }
 
-    // click = async (req) => {
-    //     console.log(req)
-    //     const response =
-    //         await axios.get("/req",
-    //             { params: { name: req } }
-    //         )
-    // }
+    click = async (req) => {
+        const response =
+            await axios.get("/req",
+                { params: { name: req } }
+            )
+        let sightings = response.data;
+        if (sightings < 10) {
+
+        }
+    }
 
 
     render() {
         let flowers = this.state.flowers.map((flower, index) =>
-            <li key={index}>
-                <div>
-                    {flower.COMNAME}
-
-                </div>
-                <div>
-                    <Link to='/flowerInfo'>Info</Link>
-                </div>
-            </li>
+            <tr key={index}><td onClick={() => this.click(flower.COMNAME)}>{flower.COMNAME}</td></tr>
         )
 
         return (
-            <Router>
-                <div>
-                    <nav>
-                        <ul>
-                            <li>
-                                <Link to="/">Home</Link>
-                            </li>
-                        </ul>
-                    </nav>
+            // <div>
+            //     {flowers}
+            // </div>
 
-                    <Switch>
+            <div>
+
+                {/* <Switch>
                         <Route path="/flowerInfo">
                             <FlowerInfo value='asd' />
                         </Route>
@@ -73,10 +59,31 @@ class HomePage extends React.Component {
                                 {flowers}
                             </div>
                         </Route>
-                    </Switch>
+                    </Switch> */}
+                <main>
+                    <div className="row">
+                        <div className="column1">
+                            <div className="tableWrapper">
+                                <table className="table table-striped table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <b>Flowers</b>
+                                            </td>
+                                        </tr>
+                                        {flowers}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
 
-                </div>
-            </Router>
+                        <div className="column2">
+
+                        </div>
+                    </div>
+                </main>
+            </div>
+
         )
     }
 }
