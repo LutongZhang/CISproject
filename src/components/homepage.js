@@ -1,7 +1,12 @@
 import React from 'react';
 import axios from "axios";
 import FlowerInfo from './flowerInfo'
-
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
 
 
 
@@ -26,31 +31,34 @@ class HomePage extends React.Component {
         })
     }
 
-    click = async (req) => {
-        const response =
-            await axios.get("/req",
-                { params: { name: req } }
-            )
-        let sightings = response.data;
-        if (sightings < 10) {
+    // click = async (req) => {
+    //     console.log(req)
+    //     const response =
+    //         await axios.get("/req",
+    //             { params: { name: req } }
+    //         )
+    // }
 
         }
     }
 
-
     render() {
         let flowers = this.state.flowers.map((flower, index) =>
-            <tr key={index}><td onClick={() => this.click(flower.COMNAME)}>{flower.COMNAME}</td></tr>
+            <tr key={index}>
+                <td>
+                    {flower.COMNAME}
+                </td>
+            </tr>
         )
 
         return (
             // <div>
             //     {flowers}
             // </div>
+            
+                <div>
+                    {/* <Switch>
 
-            <div>
-
-                {/* <Switch>
                         <Route path="/flowerInfo">
                             <FlowerInfo value='asd' />
                         </Route>
@@ -60,30 +68,39 @@ class HomePage extends React.Component {
                             </div>
                         </Route>
                     </Switch> */}
-                <main>
-                    <div className="row">
-                        <div className="column1">
-                            <div className="tableWrapper">
-                                <table className="table table-striped table-hover">
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <b>Flowers</b>
-                                            </td>
-                                        </tr>
-                                        {flowers}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
 
-                        <div className="column2">
 
-                        </div>
+            <div className="row">
+                <div className="column1">
+                    <div className="tableWrapper">
+                        <table className="table table-striped table-hover">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <b>Flowers</b>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            {flowers}
+                        </table>
                     </div>
-                </main>
-            </div>
+                </div>
 
+                <div className="column2">
+                    
+
+                        {/* <p>
+                            <b>BLAH: </b>
+                            <br/>
+                            <b>BLAH2: </b>
+                            <br/>
+                            <b>BLAH3: </b>
+                        </p> */}
+                    
+                </div>
+            </div>
+        </div>
+    
         )
     }
 }
