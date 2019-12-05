@@ -22,7 +22,7 @@ class HomePage extends React.Component {
 
     componentDidMount() {
         this.getResponse().then((res) => {
-            this.setState({ flowers: res, chosen: '' })
+            this.setState({ flowers: res, sightings: [] })
         })
     }
 
@@ -31,10 +31,15 @@ class HomePage extends React.Component {
             await axios.get("/req",
                 { params: { name: req } }
             )
-        let sightings = response.data;
-        if (sightings < 10) {
-
+        let res = response.data;
+        if (res.length > 10) {
+            res = res.slice(0, 10)
         }
+        console.log(res.length)
+        this.setState({
+            flowers: this.state.flowers,
+            sightings: res
+        })
     }
 
 
