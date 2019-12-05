@@ -2,9 +2,11 @@ import React from 'react';
 import axios from "axios";
 import {
     Route,
-    Link
+    Link,
+    Redirect
 } from "react-router-dom";
-import FlowerInfo from './flowerInfo'
+
+import Update from './update'
 
 
 
@@ -14,7 +16,8 @@ class HomePage extends React.Component {
         super(props);
         this.state = {
             flowers: [],
-            sightings: []
+            sightings: [],
+            choseFlower: ''
         }
     }
 
@@ -31,24 +34,26 @@ class HomePage extends React.Component {
     }
 
     click = async (req) => {
+
         const response =
             await axios.get("/req",
                 { params: { name: req } }
             )
         let res = response.data;
         if (res.length > 10) {
-            res = res.slice(0, 10)
+            res = await res.slice(0, 10)
         }
-        this.setState({
+        await this.setState({
             flowers: this.state.flowers,
-            sightings: res
+            sightings: res,
+            choseFlower: req
         })
-    }
 
+    }
 
     render() {
         let flowers = this.state.flowers.map((flower, index) =>
-            <tr key={index}><td onClick={() => this.click(flower.COMNAME)}>   {flower.GENUS}   {flower.SPECIES}{flower.COMNAME} </td></tr>
+            <tr key={index}><td onClick={() => this.click(flower.COMNAME)}>   {flower.GENUS} {flower.SPECIES} {flower.COMNAME} </td></tr>
         )
         //PERSON, LOCATION, SIGHTED
         let recentSightings = this.state.sightings.map((sighting, index) =>
@@ -79,17 +84,23 @@ class HomePage extends React.Component {
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <b>Flowers</b>
+                                            <b>Recent Sightings</b>
                                         </td>
                                     </tr>
                                     {recentSightings}
+                                    <tr>
+                                        <td>
+                                            <br />
+                                            <br />
+                                            <button type="button"><Link to='/HomePage/Update'>Update</Link></button>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
-
-                            <button><Link to='/Update'>Button</Link></button>
-                            <Route path='/Update'>
-
+                            <Route path='/HomePage/Update'>
+                                <Update choseFlower={this.state.choseFlower} />
                             </Route>
+
                         </div>
                     </div>
                 </main>
