@@ -10,7 +10,7 @@ class HomePage extends React.Component {
         super(props);
         this.state = {
             flowers: [],
-            chosen: ''
+            sightings: []
         }
     }
 
@@ -35,17 +35,21 @@ class HomePage extends React.Component {
         if (res.length > 10) {
             res = res.slice(0, 10)
         }
-        console.log(res.length)
         this.setState({
             flowers: this.state.flowers,
             sightings: res
         })
+        console.log(this.state.flowers)
     }
 
 
     render() {
         let flowers = this.state.flowers.map((flower, index) =>
             <tr key={index}><td onClick={() => this.click(flower.COMNAME)}>{flower.COMNAME}</td></tr>
+        )
+        //PERSON, LOCATION, SIGHTED
+        let recentSightings = this.state.sightings.map((sighting, index) =>
+            <tr key={index}><td >{sighting.PERSOn} {sighting.LOCATION} {sighting.SIGHTED}</td></tr>
         )
 
         return (
@@ -83,7 +87,16 @@ class HomePage extends React.Component {
                         </div>
 
                         <div className="column2">
-
+                            <table className="table table-striped table-hover">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <b>Flowers</b>
+                                        </td>
+                                    </tr>
+                                    {recentSightings}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </main>
