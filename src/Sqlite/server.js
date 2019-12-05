@@ -44,7 +44,7 @@ app.get('/req', async (req, res) => {
 
 })
 
-app.post('/send', (req, res) => {
+app.post('/Update', (req, res) => {
     let genus = req.body.update.genus;
     let species = req.body.update.species;
     let comName = req.body.update.comname;
@@ -53,10 +53,24 @@ app.post('/send', (req, res) => {
     let sql = `UPDATE FLOWERS set GENUS = "${genus}",SPECIES = "${species}",COMNAME = "${comName}" where COMName = "${choseFlower}"`
     db.run(sql, (err) => {
         if (err) {
-            res.end("fali to updata");
+            res.end("fail to updata");
         }
     });
     res.end("success to Update")
+})
+
+
+app.post('/Insert', (req, res) => {
+    let person = req.body.insert.person;
+    let location = req.body.insert.location;
+    let sighted = req.body.insert.sighted;
+    let choseFlower = req.body.choseFlower;
+    let sql = `INSERT into SIGHTINGS values ("${choseFlower}","${person}","${location}", "${sighted}")`
+    db.run(sql, (err) => {
+        if (err) {
+            res.end("fail to Insert")
+        }
+    })
 })
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

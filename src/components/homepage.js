@@ -80,6 +80,7 @@ class HomePage extends React.Component {
                             </div>
                         </div>
 
+
                         <div className="column2">
                             <table className="table table-striped table-hover">
                                 <tbody>
@@ -95,9 +96,10 @@ class HomePage extends React.Component {
                                             <br />
                                             <button type="button"><Link to='/HomePage/Update'>Update</Link></button>
                                         </td>
-                                        <br/>
-                                        <br/>
+
                                         <td>
+                                            <br />
+                                            <br />
                                             <button type="button"><Link to='/HomePage/Insert'>Insert</Link></button>
                                         </td>
                                     </tr>
@@ -108,7 +110,7 @@ class HomePage extends React.Component {
                             </Route>
 
                             <Route path='/HomePage/Insert'>
-                                <Insert />
+                                <Insert choseFlower={this.state.choseFlower} />
                             </Route>
 
                         </div>

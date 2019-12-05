@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import axios from "axios"
 import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
+    Link,
+    Redirect
 } from "react-router-dom";
 
 
@@ -11,7 +13,6 @@ class Insert extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: ' ',
             person: ' ',
             location: ' ',
             sighted: ' '
@@ -25,16 +26,15 @@ class Insert extends React.Component {
         const target = event.target;
         const value = target.value;
         const name = target.name;
-
         this.setState({
             [name]: value
         })
-        console.log(this.state)
 
     }
 
-    handleSubmit(event) {
-        event.preventDefault();
+    async handleSubmit(event) {
+        await axios.post('/Insert', { insert: this.state, choseFlower: this.props.choseFlower })
+        return <Redirect to='/' />
     }
 
     render() {
@@ -51,10 +51,11 @@ class Insert extends React.Component {
                     </label>
                     <label>
                         Sighted:
-                        <input type="text" name='sighted' value={this.state.sighted} onChange={this.handleChange} />
+                        <input type="date" name='sighted' value={this.state.sighted} onChange={this.handleChange} />
                     </label>
                     <input type="submit" value="Submit" />
                 </form>
+
             </div>
         );
     }
