@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/Home', (req, res) => {
-    let sql = `SELECT *
+    let sql = `SELECT * 
            FROM FLOWERS`;
 
     db.all(sql, [], (err, rows) => {
@@ -27,10 +27,21 @@ app.get('/Home', (req, res) => {
         res.send(rows)
     });
 });
+app.get('/req', async (req, res) => {
+    let comName = req.query.name;
 
-app.get('/req', (req, res) => {
-    console.log(req.query.name)
-    res.send('sdkjf')
+    let sql = `SELECT person,location,sighted
+                FROM SIGHTINGS
+                WHERE name = "${comName}"
+                ORDER BY sighted DESC`
+    db.all(sql, [], (err, rows) => {
+        console.log(comName)
+        if (err) {
+            throw err;
+        }
+        res.send(rows)
+    })
+
 })
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
