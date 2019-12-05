@@ -10,7 +10,6 @@ class HomePage extends React.Component {
         super(props);
         this.state = {
             flowers: [],
-            sightings: [],
             chosen: ''
         }
     }
@@ -41,23 +40,7 @@ class HomePage extends React.Component {
 
     render() {
         let flowers = this.state.flowers.map((flower, index) =>
-<<<<<<< HEAD
-            <tr key={index}>
-                <td>
-                    {flower.COMNAME}
-                </td>
-            </tr>
-        )
-
-        let person = this.state.sightings.map((sighting, index) =>
-            <tr key={index}>
-                <td>
-                    {sighting.PERSON}
-                </td>
-            </tr>
-=======
             <tr key={index}><td onClick={() => this.click(flower.COMNAME)}>{flower.COMNAME}</td></tr>
->>>>>>> 476e587fb627f29677cbddd095c51de0b9703dc8
         )
 
         return (
@@ -77,51 +60,6 @@ class HomePage extends React.Component {
                             </div>
                         </Route>
                     </Switch> */}
-<<<<<<< HEAD
-
-
-            <div className="row">
-                <div className="column1">
-                    <div className="tableWrapper">
-                        <table className="table table-striped table-hover">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <b>Flowers</b>
-                                    </td>
-                                </tr>
-                            </tbody>
-                            {flowers}
-                        </table>
-                    </div>
-                </div>
-
-                <div className="column2">
-                    <div className="tableWrapper">
-                        <table className="table table-striped table-hover">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <b>Flowers</b>
-                                    </td>
-                                </tr>
-                            </tbody>
-                            {person}
-                        </table>
-                    </div>
-                        {/* <p>
-                            <b>BLAH: </b>
-                            <br/>
-                            <b>BLAH2: </b>
-                            <br/>
-                            <b>BLAH3: </b>
-                        </p> */}
-                    
-                </div>
-            </div>
-        </div>
-    
-=======
                 <main>
                     <div className="row">
                         <div className="column1">
@@ -146,7 +84,6 @@ class HomePage extends React.Component {
                 </main>
             </div>
 
->>>>>>> 476e587fb627f29677cbddd095c51de0b9703dc8
         )
     }
 }
