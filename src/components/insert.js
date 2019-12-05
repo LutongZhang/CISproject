@@ -3,25 +3,21 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link,
-    Redirect
+    Link
   } from "react-router-dom";
 
 
-
-  class Update extends React.Component {
+  class Insert extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             genus: ' ',
             species: ' ',
-            comname: ' ',
-            isVisible: true
+            comname: ' '
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-
     }
 
     handleChange(event) {
@@ -37,25 +33,17 @@ import {
     }
 
     handleSubmit(event) {
-        alert('The flower information has been updated.' +
+        alert('The flower information has been inserted.' +
             ' Genus: ' + this.state.genus +
             ' Species: ' + this.state.species +
             ' Common Name: ' + this.state.comname);
-        
-        // if (this.state.isVisible)
-        // {
-            
-        // }
-
-        return <Redirect to='/'/>
-        
-        event.preventDefault(); 
+        event.preventDefault();
       }
 
     render() {
         return (
             <div>
-                <form id="updateForm" onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSubmit}>
                     <label>
                         Genus:
                         <input type="text" name='genus' value={this.state.genus} onChange={this.handleChange} />
@@ -75,4 +63,4 @@ import {
       }
     }
 
-export default Update;
+export default Insert;

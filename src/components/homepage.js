@@ -2,6 +2,7 @@ import React from 'react';
 import axios from "axios";
 import FlowerInfo from './flowerInfo'
 import Update from './update'
+import Insert from './insert'
 import {
     BrowserRouter as Router,
     Switch,
@@ -85,6 +86,15 @@ class HomePage extends React.Component {
                                                 <b>Flowers</b>
                                             </td>
                                         </tr>
+
+                                        <tr>
+                                            <button type="button"><Link to='/Insert'>Insert</Link></button>
+                                        
+                                            <Route path='/Insert'>
+                                                <Insert />
+                                            </Route>
+                                        </tr>
+
                                         {flowers}
                                     </tbody>
                                 </table>
@@ -107,14 +117,15 @@ class HomePage extends React.Component {
                                     <Route path='/Update'>
                                         <Update />
                                     </Route>
-
-                                    
-                                    
-
                                 </tbody>
                             </table>
+
                         </div>
+
+                        
                     </div>
+
+                    
                 </main>
             </div>
 
