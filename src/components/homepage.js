@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from "axios";
+import Insert from './insert'
 import {
     Route,
     Link,
@@ -73,6 +74,15 @@ class HomePage extends React.Component {
                                                 <b>Flowers</b>
                                             </td>
                                         </tr>
+
+                                        <tr>
+                                            <button type="button"><Link to='/Insert'>Insert</Link></button>
+
+                                            <Route path='/Insert'>
+                                                <Insert />
+                                            </Route>
+                                        </tr>
+
                                         {flowers}
                                     </tbody>
                                 </table>

@@ -1,27 +1,23 @@
 import React, { Component } from 'react';
-import axios from "axios"
 import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link,
-    Redirect
+    Link
 } from "react-router-dom";
 
 
-class Update extends React.Component {
+class Insert extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             genus: ' ',
             species: ' ',
-            comname: ' ',
-            isVisible: true
+            comname: ' '
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-
     }
 
     handleChange(event) {
@@ -32,22 +28,22 @@ class Update extends React.Component {
         this.setState({
             [name]: value
         })
-
+        console.log(this.state)
 
     }
 
-    async handleSubmit(event) {
-        // console.log(this.state)
-        await axios.post('/send', { update: this.state, choseFlower: this.props.choseFlower })
-        return <Redirect to='/' />
+    handleSubmit(event) {
+        alert('The flower information has been inserted.' +
+            ' Genus: ' + this.state.genus +
+            ' Species: ' + this.state.species +
+            ' Common Name: ' + this.state.comname);
         event.preventDefault();
-
     }
 
     render() {
         return (
             <div>
-                <form id="updateForm" onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSubmit}>
                     <label>
                         Genus:
                         <input type="text" name='genus' value={this.state.genus} onChange={this.handleChange} />
@@ -60,12 +56,11 @@ class Update extends React.Component {
                         Common Name:
                         <input type="text" name='comname' value={this.state.comname} onChange={this.handleChange} />
                     </label>
-
-                    <button type="submit" value="Submit" >Submit</button>
+                    <input type="submit" value="Submit" />
                 </form>
             </div>
         );
     }
 }
 
-export default Update;
+export default Insert;
