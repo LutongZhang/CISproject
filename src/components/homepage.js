@@ -1,5 +1,9 @@
 import React from 'react';
 import axios from "axios";
+import {
+    Route,
+    Link
+} from "react-router-dom";
 import FlowerInfo from './flowerInfo'
 
 
@@ -39,36 +43,20 @@ class HomePage extends React.Component {
             flowers: this.state.flowers,
             sightings: res
         })
-        console.log(this.state.flowers)
     }
 
 
     render() {
         let flowers = this.state.flowers.map((flower, index) =>
-            <tr key={index}><td onClick={() => this.click(flower.COMNAME)}>{flower.COMNAME}</td></tr>
+            <tr key={index}><td onClick={() => this.click(flower.COMNAME)}>   {flower.GENUS}   {flower.SPECIES}{flower.COMNAME} </td></tr>
         )
         //PERSON, LOCATION, SIGHTED
         let recentSightings = this.state.sightings.map((sighting, index) =>
-            <tr key={index}><td >{sighting.PERSOn} {sighting.LOCATION} {sighting.SIGHTED}</td></tr>
+            <tr key={index}><td >{sighting.PERSON} {sighting.LOCATION} {sighting.SIGHTED}</td></tr>
         )
 
         return (
-            // <div>
-            //     {flowers}
-            // </div>
-
             <div>
-
-                {/* <Switch>
-                        <Route path="/flowerInfo">
-                            <FlowerInfo value='asd' />
-                        </Route>
-                        <Route path="/">
-                            <div>
-                                {flowers}
-                            </div>
-                        </Route>
-                    </Switch> */}
                 <main>
                     <div className="row">
                         <div className="column1">
@@ -97,6 +85,11 @@ class HomePage extends React.Component {
                                     {recentSightings}
                                 </tbody>
                             </table>
+
+                            <button><Link to='/Update'>Button</Link></button>
+                            <Route path='/Update'>
+
+                            </Route>
                         </div>
                     </div>
                 </main>

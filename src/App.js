@@ -1,12 +1,17 @@
 import React from 'react';
 import HomePage from './components/homepage'
+import {
+  BrowserRouter as Router,
+} from "react-router-dom";
 
 
 let App = () => {
   return (
-    <div>
-      <HomePage />
-    </div>
+    <Router>
+      <div>
+        <HomePage />
+      </div>
+    </Router>
   )
 
 }
