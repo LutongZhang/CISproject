@@ -1,6 +1,8 @@
 import React from 'react';
+import { Container, Row, Col, Image } from 'react-bootstrap'
 import axios from "axios";
 import Insert from './insert'
+import map from './imageMap'
 import {
     Route,
     Link,
@@ -9,7 +11,7 @@ import {
 
 import Update from './update'
 
-
+const balabala = 'https://ded2589.inmotionhosting.com/~calsca6/ExtData/allimages/900/Mimulus_primuloides_900_4.jpg';
 
 
 class HomePage extends React.Component {
@@ -58,14 +60,20 @@ class HomePage extends React.Component {
         )
         //PERSON, LOCATION, SIGHTED
         let recentSightings = this.state.sightings.map((sighting, index) =>
-            <tr key={index}><td >{sighting.PERSON} {sighting.LOCATION} {sighting.SIGHTED}</td></tr>
+            <Row key={index}>
+                <Col>{sighting.PERSON} </Col>
+                <Col>{sighting.LOCATION}</Col>
+                <Col>{sighting.SIGHTED}</Col>
+            </Row>
         )
 
         return (
             <div>
                 <main>
-                    <div className="row">
-                        <div className="column1">
+                    {/* <div className="row"> */}
+                    <Row>
+                        {/* <div className="column1"> */}
+                        <Col className="column1">
                             <div className="tableWrapper">
                                 <table className="table table-striped table-hover">
                                     <tbody>
@@ -78,33 +86,40 @@ class HomePage extends React.Component {
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
+                        </Col>
 
+                        {/* <div className="column2"> */}
+                        <Col className="column2">
+                            <div>
+                                <Image src={map[this.state.choseFlower]} thumbnail />
+                            </div>
 
-                        <div className="column2">
-                            <table className="table table-striped table-hover">
+                            {/* <table className="table table-striped table-hover">
                                 <tbody>
                                     <tr>
-                                        <td>
-                                            <b>Recent Sightings</b>
-                                        </td>
-                                    </tr>
-                                    {recentSightings}
-                                    <tr>
-                                        <td>
-                                            <br />
-                                            <br />
-                                            <button type="button"><Link to='/HomePage/Update'>Update</Link></button>
-                                        </td>
 
-                                        <td>
-                                            <br />
-                                            <br />
-                                            <button type="button"><Link to='/HomePage/Insert'>Insert</Link></button>
-                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td> */}
+                            <b>Recent Sightings</b>
+                            {/* </td>
+                                    </tr> */}
+                            {recentSightings}
+                            {/* <tr>
+                                        <td> */}
+                            <br />
+                            <br />
+                            <button type="button"><Link to='/HomePage/Update'>Update</Link></button>
+                            {/* </td>
+
+                                        <td> */}
+                            <br />
+                            <br />
+                            <button type="button"><Link to='/HomePage/Insert'>Insert</Link></button>
+                            {/* </td>
                                     </tr>
                                 </tbody>
-                            </table>
+                            </table> */}
                             <Route path='/HomePage/Update'>
                                 <Update choseFlower={this.state.choseFlower} />
                             </Route>
@@ -113,8 +128,8 @@ class HomePage extends React.Component {
                                 <Insert choseFlower={this.state.choseFlower} />
                             </Route>
 
-                        </div>
-                    </div>
+                        </Col>
+                    </Row>
                 </main>
             </div>
 

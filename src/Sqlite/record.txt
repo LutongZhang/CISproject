@@ -1,0 +1,85 @@
+//SQL create TABLE
+let createTable = `CREATE Table logMessage(message char(100))`
+//SQL insert into FEATURE
+let insertFeature = `create Trigger insertFeature after INSERT on FEATURES
+                        begin 
+                        INSERT into logMessage VALUES('insert into FEATURES success');
+                        end`
+//SQL delete from FEATURE
+let deleteFeature = `create Trigger deleteFeature after DELETE on FEATURES
+                    begin 
+                    INSERT into logMessage VALUES('Delete from FEATURES success');
+                    end`
+//SQL Update from FEATURE
+let updateFeature = `create Trigger updateFeature after UPDATE on FEATURES
+                        begin 
+                        INSERT into logMessage VALUES('Update in FEATURES success');
+                        end`
+
+//SQL insert into FLOWERS
+let insertFlowers = `create Trigger insertFlower after INSERT on FLOWERS
+begin 
+INSERT into logMessage VALUES('insert into FLOWERS success');
+end`
+//SQL delete from Flowers
+let deleteFlowers = `create Trigger deleteFlower after DELETE on FLOWERS
+begin 
+INSERT into logMessage VALUES('Delete from Flowers success');
+end`
+//SQL Update from FLowers
+let updateFlowers = `create Trigger updateFlower after UPDATE on FLOWERS
+begin 
+INSERT into logMessage VALUES('Update in Flowers success');
+end`
+
+//SQL insert into MEMBERS
+let insertMembers = `create Trigger insertMembers after INSERT on MEMBERS
+begin 
+INSERT into logMessage VALUES('insert into Members success');
+end`
+//SQL delete from MMEBERS
+let deleteMembers = `create Trigger deleteMembers after DELETE on MEMBERS
+begin 
+INSERT into logMessage VALUES('Delete from Members success');
+end`
+//SQL Update from MEMBERS
+let updateMembers = `create Trigger updateMembers after UPDATE on MEMBERS
+begin 
+INSERT into logMessage VALUES('Update in members success');
+end`
+
+//SQL insert into SIGHTINGS
+let insertSightings = `create Trigger insertSightings after INSERT on SIGHTINGS
+begin 
+INSERT into logMessage VALUES('insert into Sightings success');
+end`
+//SQL delete from MMEBERS
+let deleteSightings = `create Trigger deleteSightings after DELETE on SIGHTINGS
+begin 
+INSERT into logMessage VALUES('Delete from Sightings success');
+end`
+//SQL Update from MEMBERS
+let updateSightings = `create Trigger updateSightings after UPDATE on SIGHTINGS
+begin 
+INSERT into logMessage VALUES('Update in Sightings success');
+end`
+
+
+
+
+//let sql = `create index Location on FEATURES(location)`
+//let sql = `create index class on FEATURES(CLASS)`
+//let sql = `create index latitude on FEATURES(latitude)`
+//let sql = `create index longitude on FEATURES(longitude)`
+//let sql = `create index map on FEATURES(map)`
+//let sql = `create index elev on FEATURES(ELEV)`
+//let sql = `create index genus on FLOWERS(genus)`
+//let sql = `create index species on FLOWERS(species)`
+//let sql = `create index comname on FLOWERS(COMNAME)`
+//let sql = `create index name on MEMBERS(NAME)`
+//let sql = `create index membersince on MEMBERS(membersince)`
+//let sql = `create index numsightings on MEMBERS(numsightings)`
+//let sql = `create index nameSightings on SIGHTINGS(name)`
+//let sql = `create index person on SIGHTINGS(person)`
+//let sql = `create index locationSightings on SIGHTINGS(location)`
+//let sql = `create index sighted on SIGHTINGS(sighted)`
