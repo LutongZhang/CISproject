@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import axios from "axios"
 import {
     BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
     Redirect
 } from "react-router-dom";
 
@@ -16,7 +13,6 @@ class Update extends React.Component {
             genus: ' ',
             species: ' ',
             comname: ' ',
-            isVisible: null
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -40,7 +36,6 @@ class Update extends React.Component {
         // console.log(this.state)
         await axios.post('/Update', { update: this.state, choseFlower: this.props.choseFlower })
         return <Redirect to='/' />
-        event.preventDefault();
 
     }
 
@@ -62,10 +57,6 @@ class Update extends React.Component {
                     </label>
 
                     <button type="submit" value="Submit" >Submit</button>
-
-                    {!this.state.done && (
-                        <form onSubmit={this.handleSubmit}></form>
-                    )}
 
                 </form>
             </div>
