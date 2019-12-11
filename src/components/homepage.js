@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Image } from 'react-bootstrap'
+import { Container, Row, Col, Image, Table } from 'react-bootstrap'
 import axios from "axios";
 import Insert from './insert'
 import map from './imageMap'
@@ -60,7 +60,7 @@ class HomePage extends React.Component {
 
     render() {
         let flowers = this.state.flowers.map((flower, index) =>
-            <tr key={index}><td onClick={() => this.click(flower.COMNAME)}>   {flower.GENUS} {flower.SPECIES} {flower.COMNAME} </td></tr>
+            <tr key={index} onClick={() => this.click(flower.COMNAME)}><td>{index + 1}</td><td>{flower.GENUS}</td><td>{flower.SPECIES}</td><td>{flower.COMNAME}</td></tr>
         )
         //PERSON, LOCATION, SIGHTED
         let recentSightings = this.state.sightings.map((sighting, index) =>
@@ -76,18 +76,21 @@ class HomePage extends React.Component {
                 <main>
                     <Row>
                         <Col className="column1">
-                            <div className="tableWrapper">
-                                <table className="table table-striped table-hover">
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <b>Flowers</b>
-                                            </td>
-                                        </tr>
-                                        {flowers}
-                                    </tbody>
-                                </table>
-                            </div>
+                            <Table responsive="sm">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>GENUS</th>
+                                        <th>SPECIES</th>
+                                        <th>COMNAME</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    {flowers}
+
+                                </tbody>
+                            </Table>
                         </Col>
 
                         <Col className="column2">
@@ -112,7 +115,7 @@ class HomePage extends React.Component {
                         </Col>
                     </Row>
                 </main>
-            </div>
+            </div >
 
         )
     }
