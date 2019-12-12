@@ -1,6 +1,7 @@
+
 const sqlite3 = require('sqlite3').verbose();
 
-let db = new sqlite3.Database(__dirname + './flowers.db', (err) => {
+let db = new sqlite3.Database(__dirname + './flowers1.db', (err) => {
     if (err) {
         return console.error(err.message);
     }
@@ -52,20 +53,24 @@ app.post('/Update', (req, res) => {
 
     let sql = `UPDATE FLOWERS set GENUS = "${genus}",SPECIES = "${species}",COMNAME = "${comName}" where COMName = "${choseFlower}"`
     let sightSql = `UPDATE SIGHTINGS set Name = "${comName}" where Name = "${choseFlower}"`
+    
+    let start = new Date();
     db.run(sql, (err) => {
         if (err) {
-            res.end("fail to updata");
+            res.end("Failed to update Flowers Table.");
         }
     });
+    console.log(new Date()-start);
+    
     db.run(sightSql, (err) => {
         console.log(choseFlower)
         if (err) {
-            res.end('fail to Update')
+            res.end('Failed to update Sightings Table.')
         }
     })
-    res.end("success to Update")
-})
 
+    res.end("Successfully updated.")
+})
 
 app.post('/Insert', (req, res) => {
     let person = req.body.insert.person;
@@ -75,7 +80,7 @@ app.post('/Insert', (req, res) => {
     let sql = `INSERT into SIGHTINGS values ("${choseFlower}","${person}","${location}", "${sighted}")`
     db.run(sql, (err) => {
         if (err) {
-            res.end("fail to Insert")
+            res.end("Failed to insert new sighting.")
         }
     })
 })
@@ -83,10 +88,10 @@ app.post('/Insert', (req, res) => {
 app.post('/signUp', (req, res) => {
     let userName = req.body.accountInfo.userName;
     let password = req.body.accountInfo.password;
-    let sql = `insert into user values("${userName}","${password}")`
+    let sql = `INSERT into USER values("${userName}","${password}")`
     db.run(sql, (err) => {
         if (err) {
-            res.end("fail to Insert")
+            res.end("Failed to insert into User Table.")
         }
     })
 })
@@ -108,6 +113,18 @@ app.get('/Login', async (req, res) => {
             res.send(false)
         }
     })
+})
+
+app.get('/delete', (req, res) => {
+    let comName = req.query.comName;
+    let sql = `DELETE from FLOWERS where comname = '${comName}'`;
+    db.run(sql, (err) => {
+        console.log("success")
+        if (err) {
+            res.end(err)
+        }
+    })
+    res.send(true)
 })
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
