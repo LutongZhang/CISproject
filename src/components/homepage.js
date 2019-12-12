@@ -1,17 +1,11 @@
 import React from 'react';
-import Image from 'react-bootstrap/Image'
+import { Container, Row, Col, Image } from 'react-bootstrap'
 import axios from "axios";
 import Insert from './insert'
-import {
-    Route,
-    Link,
-    Redirect
-} from "react-router-dom";
+import map from './imageMap'
+
 
 import Update from './update'
-
-const balabala = 'https://ded2589.inmotionhosting.com/~calsca6/ExtData/allimages/900/Mimulus_primuloides_900_4.jpg';
-
 
 class HomePage extends React.Component {
     constructor(props) {
@@ -19,7 +13,9 @@ class HomePage extends React.Component {
         this.state = {
             flowers: [],
             sightings: [],
-            choseFlower: ''
+            choseFlower: '',
+            update: false,
+            Insert: false,
         }
     }
 
@@ -48,9 +44,18 @@ class HomePage extends React.Component {
         await this.setState({
             flowers: this.state.flowers,
             sightings: res,
-            choseFlower: req
+            choseFlower: req,
+            Update: false,
+            Insert: false,
         })
+    }
 
+    chooseUpdate = () => {
+        this.setState({ Insert: false, Update: true })
+    }
+
+    chooseInsert = () => {
+        this.setState({ Insert: true, Update: false })
     }
 
     render() {
@@ -59,14 +64,23 @@ class HomePage extends React.Component {
         )
         //PERSON, LOCATION, SIGHTED
         let recentSightings = this.state.sightings.map((sighting, index) =>
-            <tr key={index}><td >{sighting.PERSON} {sighting.LOCATION} {sighting.SIGHTED}</td></tr>
+            <Row key={index}>
+                <Col>{sighting.PERSON} </Col>
+                <Col>{sighting.LOCATION}</Col>
+                <Col>{sighting.SIGHTED}</Col>
+            </Row>
         )
 
         return (
             <div>
+                <div id='title'>
+                    <h1>Flower Database</h1>
+                    <h6>Southern Sierra Wildflower Club</h6>
+                    <h6>By Ying Xu and Lutong Zhang</h6>
+                </div>
                 <main>
-                    <div className="row">
-                        <div className="column1">
+                    <Row>
+                        <Col className="column1">
                             <div className="tableWrapper">
                                 <table className="table table-striped table-hover">
                                     <tbody>
@@ -79,46 +93,37 @@ class HomePage extends React.Component {
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
+                        </Col>
 
-                        <div className="column2">
-                        
-                        <Image src={balabala} thumbnail/>
-                            <table className="table table-striped table-hover">
-                                <tbody>
-                                    <tr>
-                                       
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <b>Recent Sightings</b>
-                                        </td>
-                                    </tr>
-                                    {recentSightings}
-                                    <tr>
-                                        <td>
-                                            <br />
-                                            <br />
-                                            <button type="button"><Link to='/HomePage/Update'>Update</Link></button>
-                                        </td>
-                                        <br/>
-                                        <br/>
-                                        <td>
-                                            <button type="button"><Link to='/HomePage/Insert'>Insert</Link></button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <Route path='/HomePage/Update'>
-                                <Update choseFlower={this.state.choseFlower} />
-                            </Route>
+                        <Col className="column2">
+                            {(() => {
+                                if (this.state.choseFlower==='') {
+                                    return (
+                                        <b>blah</b>
+                                    )
+                                }
+                            })}
+                            
+                            <div>
+                                <Image src={map[this.state.choseFlower]} thumbnail />
+                            </div>
 
-                            <Route path='/HomePage/Insert'>
-                                <Insert />
-                            </Route>
+                            <b>Recent Sightings of {this.state.choseFlower}</b>
 
-                        </div>
-                    </div>
+                            {recentSightings}
+
+                            <br />
+                            <br />
+                            <button type="button" onClick={this.chooseUpdate}>Update Flower Info</button>
+
+                            <br />
+                            <br />
+                            <button type="button" onClick={this.chooseInsert}>Insert New Sighting</button>
+
+                            {this.state.Update ? <Update choseFlower={this.state.choseFlower} /> : null}
+                            {this.state.Insert ? <Insert choseFlower={this.state.choseFlower} /> : null}
+                        </Col>
+                    </Row>
                 </main>
             </div>
 
