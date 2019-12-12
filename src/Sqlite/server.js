@@ -80,4 +80,34 @@ app.post('/Insert', (req, res) => {
     })
 })
 
+app.post('/signUp', (req, res) => {
+    let userName = req.body.accountInfo.userName;
+    let password = req.body.accountInfo.password;
+    let sql = `insert into user values("${userName}","${password}")`
+    db.run(sql, (err) => {
+        if (err) {
+            res.end("fail to Insert")
+        }
+    })
+})
+
+app.get('/Login', async (req, res) => {
+    let userName = req.query.userName;
+    let password = req.query.password;
+    let sql = `SELECT * from User where username = "${userName}" and password = "${password}"`;
+    db.all(sql, [], (err, rows) => {
+        //console.log(comName)
+        if (err) {
+            throw err;
+        }
+
+        if (rows.length > 0 && rows[0].userName === userName && rows[0].password === password) {
+            res.send(true)
+        }
+        else {
+            res.send(false)
+        }
+    })
+})
+
 app.listen(port, () => console.log(`Listening on port ${port}`));

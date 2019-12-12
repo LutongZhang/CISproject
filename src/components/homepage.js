@@ -26,6 +26,7 @@ class HomePage extends React.Component {
     }
 
     componentDidMount() {
+        console.log(this.props.Login)
         this.getResponse().then((res) => {
             this.setState({ flowers: res, sightings: [] })
         })
@@ -102,16 +103,19 @@ class HomePage extends React.Component {
 
                             {recentSightings}
 
-                            <br />
-                            <br />
-                            <button type="button" onClick={this.chooseUpdate}>Update</button>
+                            {this.props.Login ? <div>
+                                <br />
+                                <br />
+                                <button type="button" onClick={this.chooseUpdate}>Update</button>
 
-                            <br />
-                            <br />
-                            <button type="button" onClick={this.chooseInsert}>Insert</button>
+                                <br />
+                                <br />
+                                <button type="button" onClick={this.chooseInsert}>Insert</button>
 
-                            {this.state.Update ? <Update choseFlower={this.state.choseFlower} /> : null}
-                            {this.state.Insert ? <Insert choseFlower={this.state.choseFlower} /> : null}
+                                {this.state.Update ? <Update choseFlower={this.state.choseFlower} /> : null}
+                                {this.state.Insert ? <Insert choseFlower={this.state.choseFlower} /> : null}
+                            </div> : null}
+
                         </Col>
                     </Row>
                 </main>
