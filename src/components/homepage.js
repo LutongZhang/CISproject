@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Image } from 'react-bootstrap'
+import { Container, Row, Col, Image, Table } from 'react-bootstrap'
 import axios from "axios";
 import Insert from './insert'
 import map from './imageMap'
@@ -26,6 +26,7 @@ class HomePage extends React.Component {
     }
 
     componentDidMount() {
+        console.log(this.props.Login)
         this.getResponse().then((res) => {
             this.setState({ flowers: res, sightings: [] })
         })
@@ -60,7 +61,7 @@ class HomePage extends React.Component {
 
     render() {
         let flowers = this.state.flowers.map((flower, index) =>
-            <tr key={index}><td onClick={() => this.click(flower.COMNAME)}>   {flower.GENUS} {flower.SPECIES} {flower.COMNAME} </td></tr>
+            <tr key={index} onClick={() => this.click(flower.COMNAME)}><td>{index + 1}</td><td>{flower.GENUS}</td><td>{flower.SPECIES}</td><td>{flower.COMNAME}</td></tr>
         )
         //PERSON, LOCATION, SIGHTED
         let recentSightings = this.state.sightings.map((sighting, index) =>
@@ -73,59 +74,56 @@ class HomePage extends React.Component {
 
         return (
             <div>
-                <div id='title'>
-                    <h1>Flower Database</h1>
-                    <h6>Southern Sierra Wildflower Club</h6>
-                    <h6>By Ying Xu and Lutong Zhang</h6>
+                <div id="title">
+                    <h1>Southern Sierra Wildflower Club</h1>
+                    <h6>Flower Database, by Ying Xu and Lutong Zhang</h6>
                 </div>
                 <main>
                     <Row>
                         <Col className="column1">
-                            <div className="tableWrapper">
-                                <table className="table table-striped table-hover">
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <b>Flowers</b>
-                                            </td>
-                                        </tr>
-                                        {flowers}
-                                    </tbody>
-                                </table>
-                            </div>
+                            <Table responsive="sm">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>GENUS</th>
+                                        <th>SPECIES</th>
+                                        <th>COMNAME</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    {flowers}
+
+                                </tbody>
+                            </Table>
                         </Col>
 
                         <Col className="column2">
-                            {(() => {
-                                if (this.state.choseFlower==='') {
-                                    return (
-                                        <b>blah</b>
-                                    )
-                                }
-                            })}
-                            
                             <div>
                                 <Image src={map[this.state.choseFlower]} thumbnail />
                             </div>
 
-                            <b>Recent Sightings of {this.state.choseFlower}</b>
+                            <b>Recent Sightings</b>
 
                             {recentSightings}
 
-                            <br />
-                            <br />
-                            <button type="button" onClick={this.chooseUpdate}>Update Flower Info</button>
+                            {this.props.Login ? <div>
+                                <br />
+                                <br />
+                                <button type="button" onClick={this.chooseUpdate}>Update Flower Info</button>
 
-                            <br />
-                            <br />
-                            <button type="button" onClick={this.chooseInsert}>Insert New Sighting</button>
+                                <br />
+                                <br />
+                                <button type="button" onClick={this.chooseInsert}>Insert New Sighting</button>
 
-                            {this.state.Update ? <Update choseFlower={this.state.choseFlower} /> : null}
-                            {this.state.Insert ? <Insert choseFlower={this.state.choseFlower} /> : null}
+                                {this.state.Update ? <Update choseFlower={this.state.choseFlower} /> : null}
+                                {this.state.Insert ? <Insert choseFlower={this.state.choseFlower} /> : null}
+                            </div> : null}
+
                         </Col>
                     </Row>
                 </main>
-            </div>
+            </div >
 
         )
     }
