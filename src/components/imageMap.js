@@ -2,7 +2,7 @@ let map = {
     'California flannelbush': 'https://ded2589.inmotionhosting.com/~calsca6/ExtData/allimages/Photos/Fremontodendron_californicum_image_86.jpg',
     'Ithuriels spear': 'https://www.wildflower.org/image_archive/320x240/PCD1001/PCD1001_IMG0027.JPG',
     'Primrose monkeyflower': 'https://www.wildflower.org/image_archive/320x240/PCD2941/PCD2941_IMG0035.JPG',
-    'Sheltons violet': 'https://www.wildflower.org/image_archive/640x480/PCD3458/PCD3458_IMG0038.JPG',
+    'Sheltons violet': 'http://2.bp.blogspot.com/-FEyrDE5DgCo/UV-R5IFAbzI/AAAAAAAAN50/rlRwlRNGHl4/s1600/Shelton%27s+Violet+.JPG',
     'Showy Jacobs ladder': 'https://calphotos.berkeley.edu/imgs/512x768/0000_0000/0714/1104.jpeg',
     'Douglas dustymaiden': 'http://www.bentler.us/eastern-washington/plants/dustymaiden-flowers.jpg',
     'Pale owls clover': 'https://calphotos.berkeley.edu/imgs/512x768/0000_0000/0608/0641.jpeg',
