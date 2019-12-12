@@ -3,8 +3,6 @@ import { Container, Row, Col, Image, Table } from 'react-bootstrap'
 import axios from "axios";
 import Insert from './insert'
 import map from './imageMap'
-
-
 import Update from './update'
 
 class HomePage extends React.Component {

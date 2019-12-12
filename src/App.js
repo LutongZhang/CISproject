@@ -23,13 +23,13 @@ class App extends React.Component {
       <div>
         <Router>
           <Navbar bg="light" expand="lg">
-            <Navbar.Brand href="/Home">FlowerDB</Navbar.Brand>
+            <Navbar.Brand >FlowerDB</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
-                <Nav.Link ><Link to='/Home'>Home</Link></Nav.Link>
-                <Nav.Link ><Link to='/LogIn'>SignIn</Link></Nav.Link>
-                <Nav.Link ><Link to='/SignUp'>SignUp</Link></Nav.Link>
+                <Link to='/Home'>Home</Link>
+                <Link to='/LogIn'>SignIn</Link>
+                <Link to='/SignUp'>SignUp</Link>
               </Nav>
             </Navbar.Collapse>
           </Navbar>
