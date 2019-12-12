@@ -12,7 +12,7 @@ let map = {
     'Varied-leaved jewelflower': 'https://calphotos.berkeley.edu/imgs/512x768/0000_0000/0609/0793.jpeg',
     'Leopard lily': 'https://upload.wikimedia.org/wikipedia/commons/0/0b/Lilium_pardalinum.jpg',
     'Torreys lomatium': 'https://calphotos.berkeley.edu/imgs/512x768/0000_0000/1010/2414.jpeg',
-    'Alpine penstemon': 'https://www.wildflower.org/image_archive/320x240/PCD2946/PCD2946_IMG0003.JPG',
+    'Alpine penstemon': 'https://www.swcoloradowildflowers.com/Blue%20Purple%20Enlarged%20Photos/2peha9.jpg',
     'Woodland star': 'https://flowersofmarin.files.wordpress.com/2013/04/lithophragma_affine2.jpg',
     'Rangers buttons': 'https://calphotos.berkeley.edu/imgs/512x768/0000_0000/0911/0442.jpeg',
     'Doves-foot geranium': 'https://i.pinimg.com/originals/11/32/4e/11324e2cf5fe7707404b06930213932e.jpg',

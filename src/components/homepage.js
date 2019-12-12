@@ -89,6 +89,10 @@ class HomePage extends React.Component {
 
         return (
             <div>
+                <div id="title">
+                    <h1>Southern Sierra Wildflower Club</h1>
+                    <h6>Flower Database, by Ying Xu and Lutong Zhang</h6>
+                </div>
                 <main>
                     <Row>
                         <Col className="column1">
@@ -121,12 +125,19 @@ class HomePage extends React.Component {
                             {this.props.Login ? <div>
                                 <br />
                                 <br />
-                                <Button type="button" onClick={this.chooseUpdate}>Update</Button>
+                                <Button type="button" onClick={this.chooseUpdate}>Update Flower Info</Button>
 
                                 <br />
                                 <br />
-                                <Button type="button" onClick={this.chooseInsert}>Insert</Button>
-                                <Button type="button" onClick={() => this.deleteFlower(this.state.choseFlower)}>Delete</Button>
+                                <Button type="button" onClick={this.chooseInsert}>Insert New Sighting</Button>
+                                <Button type="button" onClick={() => this.deleteFlower(this.state.choseFlower)}>Delete Chose Flower</Button>
+
+                                {/* <button type="button" onClick={this.chooseUpdate}>Update Flower Info</button>
+
+                                <br />
+                                <br />
+                                <button type="button" onClick={this.chooseInsert}>Insert New Sighting</button> */}
+
                                 {this.state.Update ? <Update choseFlower={this.state.choseFlower} /> : null}
                                 {this.state.Insert ? <Insert choseFlower={this.state.choseFlower} /> : null}
                             </div> : null}
