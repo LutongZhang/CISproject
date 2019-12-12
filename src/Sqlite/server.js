@@ -117,7 +117,11 @@ app.get('/Login', async (req, res) => {
 
 app.get('/delete', (req, res) => {
     let comName = req.query.comName;
+<<<<<<< HEAD
     let sql = `DELETE from FLOWERS where comname = '${comName}'`;
+=======
+    let sql = `delete from FLOWERS where comname = '${comName}'`
+>>>>>>> 72eaaeb5f6ff4ee2a3ae3b6341386b3382b0fc40
     db.run(sql, (err) => {
         console.log("success")
         if (err) {

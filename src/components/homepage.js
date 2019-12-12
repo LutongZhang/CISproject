@@ -69,7 +69,11 @@ class HomePage extends React.Component {
         let res = await axios.get('/delete', { params: { comName: flower } })
         if (res.data) {
             axios.get('/Home').then((res) => {
+<<<<<<< HEAD
                 this.setState({ flowers: res.data, sightings: [],choseFlower :'' })
+=======
+                this.setState({ flowers: res.data, sightings: [] })
+>>>>>>> 72eaaeb5f6ff4ee2a3ae3b6341386b3382b0fc40
             })
         }
     }
