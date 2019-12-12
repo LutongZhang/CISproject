@@ -1,9 +1,13 @@
 import React from 'react';
-import { Container, Row, Col, Image, Table } from 'react-bootstrap'
+import { Container, Row, Col, Image, Table, Button } from 'react-bootstrap'
 import axios from "axios";
 import Insert from './insert'
 import map from './imageMap'
 import Update from './update'
+import {
+    BrowserRouter as Router,
+    Redirect
+} from "react-router-dom";
 
 class HomePage extends React.Component {
     constructor(props) {
@@ -24,10 +28,13 @@ class HomePage extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.props.Login)
-        this.getResponse().then((res) => {
-            this.setState({ flowers: res, sightings: [] })
+        axios.get('/Home').then((res) => {
+            this.setState({ flowers: res.data })
         })
+        //console.log(res.data)
+        // this.getResponse().then((res) => {
+        //     this.setState({ flowers: res.data })
+        // })
     }
 
     click = async (req) => {
@@ -55,6 +62,16 @@ class HomePage extends React.Component {
 
     chooseInsert = () => {
         this.setState({ Insert: true, Update: false })
+    }
+
+    deleteFlower = async (flower) => {
+        console.log(1)
+        let res = await axios.get('/delete', { params: { comName: flower } })
+        if (res.data) {
+            axios.get('/Home').then((res) => {
+                this.setState({ flowers: res.data, sightings: [] })
+            })
+        }
     }
 
     render() {
@@ -104,12 +121,12 @@ class HomePage extends React.Component {
                             {this.props.Login ? <div>
                                 <br />
                                 <br />
-                                <button type="button" onClick={this.chooseUpdate}>Update</button>
+                                <Button type="button" onClick={this.chooseUpdate}>Update</Button>
 
                                 <br />
                                 <br />
-                                <button type="button" onClick={this.chooseInsert}>Insert</button>
-
+                                <Button type="button" onClick={this.chooseInsert}>Insert</Button>
+                                <Button type="button" onClick={() => this.deleteFlower(this.state.choseFlower)}>Delete</Button>
                                 {this.state.Update ? <Update choseFlower={this.state.choseFlower} /> : null}
                                 {this.state.Insert ? <Insert choseFlower={this.state.choseFlower} /> : null}
                             </div> : null}

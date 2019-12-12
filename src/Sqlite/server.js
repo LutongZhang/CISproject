@@ -110,4 +110,16 @@ app.get('/Login', async (req, res) => {
     })
 })
 
+app.get('/delete', (req, res) => {
+    let comName = req.query.comName;
+    let sql = `delete from FLOWERS where comname = '${comName}'`
+    db.run(sql, (err) => {
+        console.log("success")
+        if (err) {
+            res.end(err)
+        }
+    })
+    res.send(true)
+})
+
 app.listen(port, () => console.log(`Listening on port ${port}`));
