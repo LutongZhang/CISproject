@@ -30,7 +30,7 @@ class Insert extends React.Component {
     }
 
     async handleSubmit(event) {
-        await axios.post('/Insert', { insert: this.state, choseFlower: this.props.choseFlower })
+        await axios.post('/Insert', { insert: this.state, chosenFlower: this.props.chosenFlower })
         return <Redirect to='/' />
     }
 

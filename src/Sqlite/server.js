@@ -49,10 +49,10 @@ app.post('/Update', (req, res) => {
     let genus = req.body.update.genus;
     let species = req.body.update.species;
     let comName = req.body.update.comname;
-    let choseFlower = req.body.choseFlower;
+    let chosenFlower = req.body.chosenFlower;
 
-    let sql = `UPDATE FLOWERS set GENUS = "${genus}",SPECIES = "${species}",COMNAME = "${comName}" where COMName = "${choseFlower}"`
-    let sightSql = `UPDATE SIGHTINGS set Name = "${comName}" where Name = "${choseFlower}"`
+    let sql = `UPDATE FLOWERS set GENUS = "${genus}",SPECIES = "${species}",COMNAME = "${comName}" where COMName = "${chosenFlower}"`
+    let sightSql = `UPDATE SIGHTINGS set Name = "${comName}" where Name = "${chosenFlower}"`
     
     let start = new Date();
     db.run(sql, (err) => {
@@ -63,7 +63,7 @@ app.post('/Update', (req, res) => {
     console.log(new Date()-start);
     
     db.run(sightSql, (err) => {
-        console.log(choseFlower)
+        console.log(chosenFlower)
         if (err) {
             res.end('Failed to update Sightings Table.')
         }
@@ -76,8 +76,8 @@ app.post('/Insert', (req, res) => {
     let person = req.body.insert.person;
     let location = req.body.insert.location;
     let sighted = req.body.insert.sighted;
-    let choseFlower = req.body.choseFlower;
-    let sql = `INSERT into SIGHTINGS values ("${choseFlower}","${person}","${location}", "${sighted}")`
+    let chosenFlower = req.body.chosenFlower;
+    let sql = `INSERT into SIGHTINGS values ("${chosenFlower}","${person}","${location}", "${sighted}")`
     db.run(sql, (err) => {
         if (err) {
             res.end("Failed to insert new sighting.")
@@ -117,11 +117,7 @@ app.get('/Login', async (req, res) => {
 
 app.get('/delete', (req, res) => {
     let comName = req.query.comName;
-<<<<<<< HEAD
     let sql = `DELETE from FLOWERS where comname = '${comName}'`;
-=======
-    let sql = `delete from FLOWERS where comname = '${comName}'`
->>>>>>> 72eaaeb5f6ff4ee2a3ae3b6341386b3382b0fc40
     db.run(sql, (err) => {
         console.log("success")
         if (err) {

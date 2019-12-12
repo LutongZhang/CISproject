@@ -15,7 +15,7 @@ class HomePage extends React.Component {
         this.state = {
             flowers: [],
             sightings: [],
-            choseFlower: '',
+            chosenFlower: '',
             update: false,
             Insert: false,
         }
@@ -50,7 +50,7 @@ class HomePage extends React.Component {
         await this.setState({
             flowers: this.state.flowers,
             sightings: res,
-            choseFlower: req,
+            chosenFlower: req,
             Update: false,
             Insert: false,
         })
@@ -69,11 +69,7 @@ class HomePage extends React.Component {
         let res = await axios.get('/delete', { params: { comName: flower } })
         if (res.data) {
             axios.get('/Home').then((res) => {
-<<<<<<< HEAD
-                this.setState({ flowers: res.data, sightings: [],choseFlower :'' })
-=======
-                this.setState({ flowers: res.data, sightings: [] })
->>>>>>> 72eaaeb5f6ff4ee2a3ae3b6341386b3382b0fc40
+                this.setState({ flowers: res.data, sightings: [],chosenFlower :'' })
             })
         }
     }
@@ -131,7 +127,7 @@ class HomePage extends React.Component {
 
                         <Col className="column2">
                             <div>
-                                <Image src={map[this.state.choseFlower]} thumbnail height='100px'/>
+                                <Image src={map[this.state.chosenFlower]} thumbnail height='100px'/>
                             </div>
 
                             <b>Recent Sightings</b>
@@ -167,7 +163,7 @@ class HomePage extends React.Component {
                                 <br />
                                 <br />
                                 <Button type="button" onClick={this.chooseInsert}>Insert New Sighting</Button>
-                                <Button type="button" onClick={() => this.deleteFlower(this.state.choseFlower)}>Delete Chose Flower</Button>
+                                <Button type="button" onClick={() => this.deleteFlower(this.state.chosenFlower)}>Delete Chose Flower</Button>
 
                                 {/* <button type="button" onClick={this.chooseUpdate}>Update Flower Info</button>
 
@@ -175,8 +171,8 @@ class HomePage extends React.Component {
                                 <br />
                                 <button type="button" onClick={this.chooseInsert}>Insert New Sighting</button> */}
 
-                                {this.state.Update ? <Update choseFlower={this.state.choseFlower} /> : null}
-                                {this.state.Insert ? <Insert choseFlower={this.state.choseFlower} /> : null}
+                                {this.state.Update ? <Update chosenFlower={this.state.chosenFlower} /> : null}
+                                {this.state.Insert ? <Insert chosenFlower={this.state.chosenFlower} /> : null}
                             </div> : null}
 
                         </Col>
