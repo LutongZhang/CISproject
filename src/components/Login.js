@@ -11,7 +11,7 @@ class Login extends React.Component {
         this.state = {
             userName: '',
             password: '',
-            fail: false,
+            fail: '',
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -64,7 +64,7 @@ class Login extends React.Component {
                     SignIn
   </Button>
 
-                {this.state.fail ? <div>login failed</div> : null}
+                {this.state.fail}
             </Form>
         )
     }
