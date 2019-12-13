@@ -40,19 +40,19 @@ class Insert extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         Person:
-                        <input type="text" name='person' value={this.state.person} onChange={this.handleChange} />
+                        <input className="textbox" type="text" name='person' value={this.state.person} onChange={this.handleChange} />
                     </label>
                     <label>
                         Location:
-                        <input type="text" name='location' value={this.state.location} onChange={this.handleChange} />
+                        <input className="textbox" type="text" name='location' value={this.state.location} onChange={this.handleChange} />
                     </label>
                     <label>
                         Sighted:
-                        <input type="date" name='sighted' value={this.state.sighted} onChange={this.handleChange} />
+                        <input className="textbox" type="date" name='sighted' value={this.state.sighted} onChange={this.handleChange} />
                     </label>
-                    <input type="submit" value="Submit" />
+                    
+                    <button type="submit" value="Submit">Submit</button>
                 </form>
-
             </div>
         );
     }

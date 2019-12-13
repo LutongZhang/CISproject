@@ -36,33 +36,42 @@ class Login extends React.Component {
         console.log(response)
         if (response.data) {
             this.props.x(true)
-            this.setState({ fail: 'Login Success' })
+            this.setState({ fail: 'Login Success.' })
         }
         else {
             this.props.x(false)
-            this.setState({ fail: 'fail' })
+            this.setState({ fail: 'Invalid username or password.' })
         }
     }
 
     render() {
+        let style = {
+            margin: '0 auto',
+            width: '300px',
+        }
+    
         return (
-            <Form onSubmit={this.handleSubmit}>
-                <Form.Group controlId="formBasicEmail" >
-                    <Form.Label>userName</Form.Label>
-                    <Form.Control placeholder="Enter UserName" name='userName' value={this.state.userName} onChange={this.handleChange} />
+            <Form onSubmit={this.handleSubmit} style={style}>
+                <br></br>
+                <h2 style={{color:'#2d839f', textAlign:'center'}}>Log in to your account</h2>
+                <br></br>
+                <br></br>
+                <Form.Group controlId="formBasicEmail">
+                    <Form.Label>Username</Form.Label>
+                    <Form.Control placeholder="Enter Username" name='userName' value={this.state.userName} onChange={this.handleChange} />
                     <Form.Text className="text-muted">
                         We'll never share your Username with anyone else.
-    </Form.Text>
+                    </Form.Text>
                 </Form.Group>
-
+                
                 <Form.Group controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control placeholder="Password" name='password' value={this.state.password} onChange={this.handleChange} />
+                    <Form.Control placeholder="Enter Password" name='password' value={this.state.password} onChange={this.handleChange} />
                 </Form.Group>
-
-                <Button variant="primary" onClick={this.handleSubmit}>
-                    SignIn
-  </Button>
+                
+                <Button variant="primary" onClick={this.handleSubmit} style={{width:'300px'}}>
+                    Sign In
+                </Button>
 
                 {this.state.fail}
             </Form>

@@ -1,9 +1,10 @@
 import React from 'react';
-import { Container, Row, Col, Image, Table, Button } from 'react-bootstrap'
+
 import axios from "axios";
-import Insert from './insert'
+import Insert from './Insert'
+import Update from './Update'
 import map from './imageMap'
-import Update from './update'
+import { Container, Row, Col, Image, Table, Button } from 'react-bootstrap'
 import {
     BrowserRouter as Router,
     Redirect
@@ -76,28 +77,16 @@ class HomePage extends React.Component {
 
     render() {
         let flowers = this.state.flowers.map((flower, index) =>
-            <tr key={index} onClick={() => this.click(flower.COMNAME)}><td>{index + 1}</td><td>{flower.GENUS}</td><td>{flower.SPECIES}</td><td>{flower.COMNAME}</td></tr>
+            <tr key={index} onClick={() => this.click(flower.COMNAME)}><td className="order">{index + 1}</td><td>{flower.GENUS}</td><td>{flower.SPECIES}</td><td>{flower.COMNAME}</td></tr>
         )
-        //PERSON, LOCATION, SIGHTED
-        let recentSightings_person = this.state.sightings.map((sighting, index) =>
-            <tr><td>{sighting.PERSON}</td></tr>
+        
+        let recentSightings = this.state.sightings.map((sighting, index) =>
+            <tr key={index}>
+                <td>{sighting.PERSON} </td>
+                <td>{sighting.LOCATION}</td>
+                <td>{sighting.SIGHTED}</td>
+            </tr>
         )
-
-        let recentSightings_location = this.state.sightings.map((sighting, index) =>
-            <tr><td>{sighting.LOCATION}</td></tr>
-        )
-
-        let recentSightings_sighted = this.state.sightings.map((sighting, index) =>
-            <tr><td>{sighting.SIGHTED}</td></tr>
-        )
-
-        // let recentSightings = this.state.sightings.map((sighting, index) =>
-        //     <Row key={index}>
-        //         <Col>{sighting.PERSON} </Col>
-        //         <Col>{sighting.LOCATION}</Col>
-        //         <Col>{sighting.SIGHTED}</Col>
-        //     </Row>
-        // )
 
         return (
             <div>
@@ -106,31 +95,52 @@ class HomePage extends React.Component {
                     <h6>Flower Database, by Ying Xu and Lutong Zhang</h6>
                 </div>
                 <main>
-                    <Row>
+                    <Row className="row">
                         <Col className="column1">
-                            <Table responsive="sm">
+                            <h4 style={{color:'#2d839f'}}>Flower Listings</h4>
+                            <Table id="flowerListings" responsive="sm" striped>
                                 <thead>
                                     <tr>
-                                        <th>#</th>
+                                        <th className="order">#</th>
                                         <th>GENUS</th>
                                         <th>SPECIES</th>
                                         <th>COMNAME</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-
                                     {flowers}
-
                                 </tbody>
                             </Table>
                         </Col>
 
                         <Col className="column2">
-                            <div>
-                                <Image src={map[this.state.chosenFlower]} thumbnail height='100px'/>
-                            </div>
+                            {this.state.chosenFlower==='' ? "Select a flower to view its info!" : <div>
+                            
+                            <Table responsive="sm">
+                                <tr>
+                                    <td>
+                                        <Image src={map[this.state.chosenFlower]} height='200px'/>
+                                    </td>
+                                    <td>
+                                        {this.props.Login ? <div>
+                                        
+                                        <Button type="button" onClick={this.chooseUpdate}>Update Flower Info</Button>
+                                        <br></br>
+                                        <br></br>
+                                        <Button type="button" onClick={this.chooseInsert}>Insert New Sighting</Button>
+                                        <br></br>
+                                        <br></br>
+                                        <Button type="button" onClick={() => this.deleteFlower(this.state.chosenFlower)}>Delete Flower</Button>
+                                        
+                                        </div> : null }
+                                    </td>
+                                </tr>      
+                            </Table>
+                                    {this.state.Insert ? <Insert chosenFlower={this.state.chosenFlower} /> : null}
+                                    {this.state.Update ? <Update chosenFlower={this.state.chosenFlower} /> : null}
+                            <br></br>
 
-                            <b>Recent Sightings</b>
+                            <b>Recent Sightings of {this.state.chosenFlower}</b>
 
                             <Table responsive="sm">
                                 <thead>
@@ -141,40 +151,10 @@ class HomePage extends React.Component {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            {recentSightings_person}
-                                        </td>
-                                        <td>
-                                            {recentSightings_location}
-                                        </td>
-                                        <td>
-                                            {recentSightings_sighted}
-                                        </td>
-                                    </tr>
+                                    {recentSightings}
                                 </tbody>
                             </Table>
-
-                            {this.props.Login ? <div>
-                                <br />
-                                <br />
-                                <Button type="button" onClick={this.chooseUpdate}>Update Flower Info</Button>
-
-                                <br />
-                                <br />
-                                <Button type="button" onClick={this.chooseInsert}>Insert New Sighting</Button>
-                                <Button type="button" onClick={() => this.deleteFlower(this.state.chosenFlower)}>Delete Chose Flower</Button>
-
-                                {/* <button type="button" onClick={this.chooseUpdate}>Update Flower Info</button>
-
-                                <br />
-                                <br />
-                                <button type="button" onClick={this.chooseInsert}>Insert New Sighting</button> */}
-
-                                {this.state.Update ? <Update chosenFlower={this.state.chosenFlower} /> : null}
-                                {this.state.Insert ? <Insert chosenFlower={this.state.chosenFlower} /> : null}
-                            </div> : null}
-
+                            </div>}
                         </Col>
                     </Row>
                 </main>

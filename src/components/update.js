@@ -45,18 +45,18 @@ class Update extends React.Component {
                 <form id="updateForm" onSubmit={this.handleSubmit}>
                     <label>
                         Genus:
-                        <input type="text" name='genus' value={this.state.genus} onChange={this.handleChange} />
+                        <input className="textbox" type="text" name='genus' value={this.state.genus} onChange={this.handleChange} />
                     </label>
                     <label>
                         Species:
-                        <input type="text" name='species' value={this.state.species} onChange={this.handleChange} />
+                        <input className="textbox" type="text" name='species' value={this.state.species} onChange={this.handleChange} />
                     </label>
                     <label>
                         Common Name:
-                        <input type="text" name='comname' value={this.state.comname} onChange={this.handleChange} />
+                        <input className="textbox" type="text" name='comname' value={this.state.comname} onChange={this.handleChange} />
                     </label>
 
-                    <button type="submit" value="Submit" >Submit</button>
+                    <button type="submit" value="Submit">Submit</button>
 
                 </form>
             </div>

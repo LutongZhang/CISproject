@@ -1,3 +1,8 @@
+#title {
+	text-align: center;
+}
+
+/* ##### general ##### */
 body {
 	margin: 0;
 	padding: 0;
@@ -5,11 +10,6 @@ body {
 	background-size: 400% 400%;
 }
 
-#title {
-	text-align: center;
-}
-
-/* ##### general ##### */
 * {
 	box-sizing: border-box;
 }
@@ -35,7 +35,7 @@ input[type='text'] {
 	height: 4rem;
 }
 
-/* ##### NamesList ##### */
+/* ##### FlowersList ##### */
 tr {
 	padding: 0;
 }
@@ -78,25 +78,27 @@ td:hover {
 	clear: both;
 }
 
-.tableWrapper {
-	max-height: 800px;
+#flowerListings {
+	display: block;
 	overflow: auto;
-	scroll-behavior: smooth;
+	height: 800px;
+	border: default;
 }
 
-/* ##### Footer ##### */
-button {
-	background: #ffa500;
-	color: #3b3b3b;
-	padding: 0.6rem 1rem;
-	font-size: 0.8rem;
-	border: solid 1px #c7c7c7;
-	margin: 1rem 0;
-	box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-	border-radius: 3px;
-	outline: none;
+.order {
+	border-right: 2px solid #f1f1f1;
 }
-button:hover {
-	background: #01579b;
-	color: #ffffff;
+
+.textbox {
+	height: 20px !important;
+	width: 150px !important;
+	font-size: 10pt !important;
+}
+
+button {
+	color: white !important;
+}
+Button {
+	background-color:#2d839f !important;
+	border-color: #2d839f !important;
 }

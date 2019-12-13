@@ -31,24 +31,33 @@ class SignUp extends React.Component {
     }
 
     render() {
+        let style = {
+            margin: '0 auto',
+            width: '300px',
+        }
+  
         return (
-            <Form onSubmit={this.handleSubmit}>
-                <Form.Group controlId="formBasicEmail" >
-                    <Form.Label>userName</Form.Label>
-                    <Form.Control placeholder="Enter UserName" name='userName' value={this.state.userName} onChange={this.handleChange} />
+            <Form onSubmit={this.handleSubmit} style={style}>
+                <br></br>
+                <h2 style={{color:'#2d839f', textAlign:'center'}}>Sign up today!</h2>
+                <br></br>
+                <br></br>
+                <Form.Group controlId="formBasicEmail">
+                    <Form.Label>Username</Form.Label>
+                    <Form.Control placeholder="Enter Username" name='userName' value={this.state.userName} onChange={this.handleChange} />
                     <Form.Text className="text-muted">
                         We'll never share your Username with anyone else.
-    </Form.Text>
+                    </Form.Text>
                 </Form.Group>
 
                 <Form.Group controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control placeholder="Password" name='password' value={this.state.password} onChange={this.handleChange} />
+                    <Form.Control placeholder="Enter Password" name='password' value={this.state.password} onChange={this.handleChange} />
                 </Form.Group>
 
-                <Button variant="primary" type="submit">
-                    SignUp
-  </Button>
+                <Button variant="primary" type="submit" style={{width:'300px'}}>
+                    Sign Up
+                </Button>
             </Form>
         )
     }
