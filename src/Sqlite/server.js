@@ -1,7 +1,7 @@
 
 const sqlite3 = require('sqlite3').verbose();
 
-let db = new sqlite3.Database(__dirname + './flowers1.db', (err) => {
+let db = new sqlite3.Database(__dirname + './flowers2.db', (err) => {
     if (err) {
         return console.error(err.message);
     }
@@ -60,7 +60,7 @@ app.post('/Update', (req, res) => {
             res.end("Failed to update Flowers Table.");
         }
     });
-    console.log(new Date()-start);
+    console.log("The time for Update is: " + new Date()-start));
     
     db.run(sightSql, (err) => {
         console.log(chosenFlower)
@@ -76,8 +76,9 @@ app.post('/Insert', (req, res) => {
     let person = req.body.insert.person;
     let location = req.body.insert.location;
     let sighted = req.body.insert.sighted;
-    let chosenFlower = req.body.chosenFlower;
-    let sql = `INSERT into SIGHTINGS values ("${chosenFlower}","${person}","${location}", "${sighted}")`
+    // let chosenFlower = req.body.chosenFlower;
+    let name = req.body.insert.name;
+    let sql = `INSERT into SIGHTINGS values ("${name}","${person}","${location}", "${sighted}")`
     db.run(sql, (err) => {
         if (err) {
             res.end("Failed to insert new sighting.")

@@ -1,5 +1,4 @@
 import React from 'react';
-
 import axios from "axios";
 import Insert from './Insert'
 import Update from './Update'

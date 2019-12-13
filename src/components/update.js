@@ -35,7 +35,7 @@ class Update extends React.Component {
     async handleSubmit(event) {
         // console.log(this.state)
         await axios.post('/Update', { update: this.state, chosenFlower: this.props.chosenFlower })
-        return <Redirect to='/' />
+        // return <Redirect to='/' />
 
     }
 

@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import axios from "axios"
-import {
-    BrowserRouter as Router,
-    Redirect
-} from "react-router-dom";
-
 
 class Insert extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            name: ' ',
             person: ' ',
             location: ' ',
             sighted: ' '
@@ -31,13 +27,17 @@ class Insert extends React.Component {
 
     async handleSubmit(event) {
         await axios.post('/Insert', { insert: this.state, chosenFlower: this.props.chosenFlower })
-        return <Redirect to='/' />
+        // return <Redirect to='/' />
     }
 
     render() {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
+                    <label>
+                        Name:
+                        <input className="textbox" type="text" name='name' value={this.state.name} onChange={this.handleChange} />
+                    </label>
                     <label>
                         Person:
                         <input className="textbox" type="text" name='person' value={this.state.person} onChange={this.handleChange} />
@@ -50,7 +50,7 @@ class Insert extends React.Component {
                         Sighted:
                         <input className="textbox" type="date" name='sighted' value={this.state.sighted} onChange={this.handleChange} />
                     </label>
-                    
+
                     <button type="submit" value="Submit">Submit</button>
                 </form>
             </div>
