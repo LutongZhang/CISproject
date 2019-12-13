@@ -60,7 +60,7 @@ app.post('/Update', (req, res) => {
             res.end("Failed to update Flowers Table.");
         }
     });
-    console.log("The time for Update is: " + new Date()-start));
+    console.log("The time for Update is: " + new Date()-start);
     
     db.run(sightSql, (err) => {
         console.log(chosenFlower)
